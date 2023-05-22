@@ -1,0 +1,38 @@
+//
+//  Landmark.swift
+//  Landmarks
+//
+//  Created by fergus on 21/05/23.
+//
+
+import Foundation
+import SwiftUI
+import CoreLocation // access to device location 
+
+struct Landmark: Hashable, Codable, Identifiable {
+    var id: Int
+    var name: String
+    var park: String
+    var state: String
+    var description: String
+    var isFavorite: Bool
+    
+    private var imageName: String
+    var image: Image { // getter for private var
+        Image(imageName)
+    }
+    
+    private var coordinates: Coordinates
+    
+    var locationCoordinate: CLLocationCoordinate2D {
+       CLLocationCoordinate2D(
+           latitude: coordinates.latitude,
+           longitude: coordinates.longitude)
+    }
+    
+    struct Coordinates: Hashable, Codable {
+        var latitude: Double
+        var longitude: Double
+    }
+}
+
